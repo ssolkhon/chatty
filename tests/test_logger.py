@@ -1,7 +1,7 @@
 import logging
 import unittest
 
-from chatty.logger import Logger
+from logger import Logger
 
 
 class TestLogger(unittest.TestCase):
