@@ -1,4 +1,4 @@
-import chatty.logger as logger
+import logger
 
 
 class AIClient(object):

@@ -5,3 +5,5 @@ venv/
 .coverage
 .tox/
 *.log
+src/chatty.egg-info/
+build/

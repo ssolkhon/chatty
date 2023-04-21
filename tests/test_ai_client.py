@@ -1,6 +1,7 @@
 import unittest
 
-from chatty import ai_client, logger
+import ai_client
+import logger
 
 
 class TestAIClient(unittest.TestCase):
