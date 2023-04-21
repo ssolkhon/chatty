@@ -2,3 +2,5 @@
 .idea/
 *.wav
 venv/
+.coverage
+.tox/

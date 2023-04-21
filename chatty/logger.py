@@ -11,7 +11,8 @@ class Logger:
         console_handler.setLevel(level)
 
         # create formatter
-        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %('
+                                      'levelname)s - %(message)s')
 
         # add formatter to console_handler
         console_handler.setFormatter(formatter)

@@ -1,9 +1,6 @@
-import logger
+import chatty.logger as logger
 
 
 class AIClient(object):
-    def __init__(self, log=None):
-        if log:
-            self.log = log
-        else:
-            self.log = logger.Logger('aiclient')
+    def __init__(self, log=logger.Logger('aiclient')):
+        self.log = log
