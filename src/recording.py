@@ -22,7 +22,7 @@ class Recording(object):
         r = speech_recognition.Recognizer()
         self.log.debug("Recording")
         with speech_recognition.Microphone() as source:
-            print("Please ask ChatGPT a question...")
+            print("Please ask Chatty a question...")
             audio = r.listen(source)
         self.log.debug("Recording ended")
         self._save_wav(audio)
