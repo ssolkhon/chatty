@@ -1,3 +1,5 @@
 setuptools_scm
 requests
 SpeechRecognition
+pydub
+gTTS

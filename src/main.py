@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 
+import os
 import sys
-import subprocess
 
-from openai_client import OpenAIClient
-from recording import Recording
+from pydub import AudioSegment
+from pydub.playback import play
 
 import config
 import logger
+import openai_client
+import recording
 
 
 def main():
@@ -19,7 +21,7 @@ def main():
         print(message)
         sys.exit(1)
 
-    ai = OpenAIClient(config.OPENAI_API_TOKEN, log)
+    ai = openai_client.OpenAIClient(config.OPENAI_API_TOKEN, log)
 
     models = ai.list_model_names()
     for model in config.REQUIRED_MODELS:
@@ -29,20 +31,28 @@ def main():
             print(message)
             sys.exit(1)
 
-    recording = Recording('./recordings')
+    input_recording = recording.Recording('./recordings/input.wav')
 
     while True:
-        recording.record()
-
-        speech_to_text = ai.speech_to_text(recording.filename)
+        input_recording.record_microphone()
+        speech_to_text = ai.speech_to_text(input_recording.path)
 
         if "goodbye" in speech_to_text.lower():
             break
 
         chatgpt_text = ai.chatgpt_response(speech_to_text)
-        subprocess.call(["say", chatgpt_text])
+        output_recording = recording.Recording('./recordings/output.mp3')
+        output_recording.record_text(chatgpt_text)
+        sound = AudioSegment.from_file(output_recording.path,
+                                       format="mp3")
+        play(sound)
 
-    subprocess.call(["say", "goodbye"])
+    if not os.path.exists('./recordings/goodbye.mp3'):
+        goodbye_recording = recording.Recording('./recordings/goodbye.mp3')
+        goodbye_recording.record_text("Goodbye")
+
+    sound = AudioSegment.from_file("./recordings/goodbye.mp3", format="mp3")
+    play(sound)
 
 
 if __name__ == '__main__':
