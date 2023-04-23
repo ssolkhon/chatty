@@ -13,7 +13,7 @@ Please ask Chatty a question...
 
 The program will detect when you have finished asking your question and it will
 then submit it to ChatGPT for a response. The response will then be spoken 
-back to you. This will currently only tested on an Mac.
+back to you. This is currently only tested on an Mac.
 
 After each response you will be prompted to ask another question.
 
