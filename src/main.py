@@ -31,7 +31,7 @@ def main():
             print(message)
             sys.exit(1)
 
-    input_recording = recording.Recording('./recordings/input.wav')
+    input_recording = recording.Recording('./recordings/input.wav', log)
 
     while True:
         input_recording.record_microphone()
@@ -41,14 +41,15 @@ def main():
             break
 
         chatgpt_text = ai.chatgpt_response(speech_to_text)
-        output_recording = recording.Recording('./recordings/output.mp3')
+        output_recording = recording.Recording('./recordings/output.mp3', log)
         output_recording.record_text(chatgpt_text)
         sound = AudioSegment.from_file(output_recording.path,
                                        format="mp3")
         play(sound)
 
     if not os.path.exists('./recordings/goodbye.mp3'):
-        goodbye_recording = recording.Recording('./recordings/goodbye.mp3')
+        goodbye_recording = recording.Recording('./recordings/goodbye.mp3',
+                                                log)
         goodbye_recording.record_text("Goodbye")
 
     sound = AudioSegment.from_file("./recordings/goodbye.mp3", format="mp3")
