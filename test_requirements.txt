@@ -1,4 +1,3 @@
-tox
 pytest
 coverage
 flake8

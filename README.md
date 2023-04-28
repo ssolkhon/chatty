@@ -35,7 +35,7 @@ $ chatty
 
 ### Test:
 ```bash
-$ pip install test_requirements.txt
+$ pip install tox
 $ tox
 ```
 

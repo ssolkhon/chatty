@@ -7,11 +7,13 @@ class Logger:
         self.logger = logging.getLogger(name)
         self.logger.setLevel(level)
 
-        if not os.path.exists("logs"):
-            os.mkdir("logs")
+        log_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                               'logs')
+        if not os.path.exists(log_dir):
+            os.makedirs(log_dir)
 
-        # create console handler and set logging level
-        file_handler = logging.FileHandler(f"logs/{ filename }")
+        # create file handler and set logging level
+        file_handler = logging.FileHandler(os.path.join(log_dir, filename))
         file_handler.setLevel(level)
 
         # create formatter
