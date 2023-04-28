@@ -4,6 +4,8 @@ ChatGPT AI assistant.
 
 I built this to play around with the OpenAI API.
 
+![Tests](https://github.com/ssolkhon/chatty/actions/workflows/tests.yaml/badge.svg)
+
 ### Usage:
 You will be prompted for a question in your console:
 
