@@ -13,9 +13,7 @@ class TestOpenAIClient(unittest.TestCase):
 
     def setUp(self):
         token = "285A31B2-61BD-4B0B-A553-48077A49AB43"
-        # TODO: Logger should come from super
-        log = logger.Logger('test', level=logging.INFO)
-        self.client = openai_client.OpenAIClient(token, log)
+        self.client = openai_client.OpenAIClient(token)
 
     @patch('openai_client.requests')
     def test_list_model_names(self, requests_mock):

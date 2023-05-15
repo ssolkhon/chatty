@@ -10,7 +10,10 @@ BASE_URL = "https://api.openai.com/v1"
 class OpenAIClient(AIClient):
 
     def __init__(self, api_token, log=None):
-        super().__init__(log)
+        if log:
+            super().__init__(log)
+        else:
+            super().__init__()
         self.api_token = api_token
         self.headers = {"Authorization": f"Bearer {self.api_token}"}
 
