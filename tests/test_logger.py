@@ -52,7 +52,7 @@ class TestLogger(unittest.TestCase):
         self.log.info("Hello, World!")
         with open(self.log_file.name, 'r') as f:
             data = f.read()
-        assert "Hello, World!" in data
+        self.assertTrue("Hello, World!" in data)
 
 
 if __name__ == '__main__':

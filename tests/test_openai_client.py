@@ -1,12 +1,10 @@
 import unittest
-import logging
 import tempfile
 
 from unittest.mock import patch, MagicMock
 from requests import ConnectionError
 
 import openai_client
-import logger
 
 
 class TestOpenAIClient(unittest.TestCase):
@@ -26,8 +24,8 @@ class TestOpenAIClient(unittest.TestCase):
 
         requests_mock.get.return_value = mock_response
         models = self.client.list_model_names()
-        assert type(models), list
-        assert len(models) == 2
+        self.assertEqual(type(models), list)
+        self.assertEqual(len(models), 2)
 
     @patch('openai_client.requests')
     def test_list_model_names_500(self, requests_mock):
@@ -58,8 +56,8 @@ class TestOpenAIClient(unittest.TestCase):
         requests_mock.post.return_value = mock_response
         with tempfile.NamedTemporaryFile(suffix='.wav') as file:
             result = self.client.speech_to_text(file.name)
-        assert type(result), str
-        assert result, "Hello from ChatGPT"
+        self.assertEqual(type(result), str)
+        self.assertEqual(result, "Hello from ChatGPT")
 
     @patch('openai_client.requests')
     def test_speech_to_text_500(self, requests_mock):
@@ -93,8 +91,8 @@ class TestOpenAIClient(unittest.TestCase):
 
         requests_mock.post.return_value = mock_response
         result = self.client.chatgpt_response("Ping")
-        assert type(result), str
-        assert result, "Pong"
+        self.assertEqual(type(result), str)
+        self.assertEqual(result, "Pong")
 
     @patch('openai_client.requests')
     def test_chatgpt_response_500(self, requests_mock):
