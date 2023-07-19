@@ -31,6 +31,8 @@ class OpenAIClient(AIClient):
         return result
 
     def speech_to_text(self, file):
+        # TODO: use https://github.com/Uberi/speech_recognition/blob/master
+        #  /speech_recognition/recognizers/whisper.py
         self.log.debug(f"Converting speech in { file } to text using OpenAI "
                        f"API")
 

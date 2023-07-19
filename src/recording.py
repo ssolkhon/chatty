@@ -22,9 +22,9 @@ class Recording(object):
             audio = r.listen(source)
         self.log.debug("Recording ended")
         self.log.debug(f"Saving file '{ self.path }")
-        with open(self.path, "wb") as f:
+        with open(self.path + '/microphone_recording.wav', "wb") as f:
             f.write(audio.get_wav_data())
 
     def record_text(self, text):
         text_to_speech = gTTS(text=text, lang='en')
-        text_to_speech.save(self.path)
+        text_to_speech.save(self.path + '/text_recording.mp3')
